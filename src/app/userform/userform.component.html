@@ -1,0 +1,13 @@
+<input
+type="text"
+[(ngModel)]="userInput.name"/>
+<input
+type="text"
+[(ngModel)]="userInput.uname"/>
+
+<button (click)='submitit()' routerLink="/">
+update
+</button>
+<button (click)="onCreateUser(userInput.name,userInput.uname)" routerLink="/">
+Submit
+</button>

@@ -1,0 +1,10 @@
+<!-- <p>
+  homepage works!
+</p> -->
+<p *ngFor='let user of users'>
+    Name:{{user.name}}
+    Username:{{user.username}}
+    <button (click)='onUpdate(user)' routerLink="/user_form">UPDATE</button>
+    <button (click)='onDelete(user)'>DELETE</button>
+  </p>
+  <a routerLink="/user_form">Add new user</a>

@@ -1,15 +1,46 @@
-<input type="text"
-       [(ngModel)]="userInput.name" />
-<input type="text"
-       [(ngModel)]="userInput.uname" />
 
-<button (click)='submitit()'
-        routerLink="/">
-  update
-</button>
-<button (click)="onCreateUser(userInput.name,userInput.uname)"
-        routerLink="/">
-  Submit
-</button>
-
+<div class="parent">
+  <h1>U S E R</h1>F O R M
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="example-form">
+  <!-- ng-submit="onCreateUser(userInput.name,userInput.uname,userInput.email)" -->
+  <p>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Firstname</mat-label>
+      <input matInput type="text" id="name" [(ngModel)]="userInput.name" formControlName="name" placeholder="ex: john" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+      <input matInput type="text" id="uname" [(ngModel)]="userInput.uname" formControlName="uname" placeholder="ex: abraham123" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field  class="example-half-width" appearance="outline" >
+        <mat-label>Email</mat-label>
+      <input matInput type="text" id="email" [(ngModel)]="userInput.email" formControlName="email"  placeholder="ex: John@gmail.com" />
+    </mat-form-field>
+    
+    <mat-form-field class="example-half-width" appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" id="phone" [(ngModel)]="userInput.phone" formControlName="phone"  placeholder="++ 4423 6678 98" />
+      </mat-form-field>
+  </p>
+  <p>
+      <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>website</mat-label>
+        <input matInput type="text" id="website" [(ngModel)]="userInput.website" formControlName="website" placeholder="ex: www.johnabrham.com" />
+      </mat-form-field>
+    </p>
+  <p>
+      <br>
+    </p>
+  <button mat-raised-button color="primary" class="button-full-width" (click)='submitit()' routerLink="/">
+    UPDATE
+  </button>
+  <button mat-raised-button color="accent" class="button-full-width" type="submit">
+    SUBMIT
+  </button>
+</form>
+</div>
 <!--  -->

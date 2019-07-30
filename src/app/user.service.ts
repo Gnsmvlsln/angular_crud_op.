@@ -11,12 +11,18 @@ export class UserService {
   userinput: User = {
     name: "",
     uname: "",
+    email:"",
+    phone:null,
+    website:"",
     id: 100
   }
   userData: User;
   dataToUpdate = {
     updateName: "",
     updateUname: "",
+    updateEmail: "",
+    updatePhone:"",
+    updateWebsite:"",
     id: null
   }
   //  num:12;
@@ -42,11 +48,14 @@ export class UserService {
     return this.arrayAtservice;
   }
 
-  arrayForUserform(firstname: string, username: string) {
+  arrayForUserform(firstname: string, username: string,email: string,phone: number,website: string) {
     const user: User = {
       id: this.getNewId(),
       name: firstname,
-      username: username
+      username: username,
+      email:email,
+      phone:phone,
+      website:website
     }
     this.arrayAtservice.push(user);
     // this.userinput.name = firstname;
@@ -56,18 +65,14 @@ export class UserService {
     // this.addUser(this.userData)
 
   }
-  addUser(userData) {
-    console.log('xxx', JSON.stringify(userData))
-    console.log('damn it', this.http.post(this.url, userData))
-    return this.http.post(this.url, userData)
-  }
 
   updateUserData(userData) {
-    console.log('something', userData)
     this.dataToUpdate.updateName = userData.name;
     this.dataToUpdate.updateUname = userData.username;
+    this.dataToUpdate.updateEmail = userData.email;
+    this.dataToUpdate.updatePhone = userData.phone;
     this.dataToUpdate.id = userData.id;
-    console.log('okoko', this.dataToUpdate)
+    this.dataToUpdate.updateWebsite=userData.website;
   }
   compareUser(data) {
     console.log(data)
@@ -84,9 +89,15 @@ export class UserService {
     const index = this.arrayAtservice.findIndex(obj => data.id == obj.id);
     this.arrayAtservice[index].name = data.name;
     this.arrayAtservice[index].username = data.uname;
+    this.arrayAtservice[index].email = data.email;
+    this.arrayAtservice[index].phone = data.phone;
+    this.arrayAtservice[index].website=data.website 
     this.dataToUpdate = {
       updateName: "",
       updateUname: "",
+      updateEmail:"",
+      updatePhone:"",
+      updateWebsite:"",
       id: null
     }
   }
@@ -94,7 +105,6 @@ export class UserService {
   delete(data) {
     return this.http.delete(this.url + '/' + data)
   }
-
   getNewId() {
     return (this.arrayAtservice[this.arrayAtservice.length - 1].id) + 1;
   }

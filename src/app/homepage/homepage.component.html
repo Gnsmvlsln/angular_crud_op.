@@ -1,10 +1,49 @@
 <!-- <p>
   homepage works!
 </p> -->
-<p *ngFor='let user of users'>
-    Name:{{user.name}}
-    Username:{{user.username}}
-    <button (click)='onUpdate(user)' routerLink="/user_form">UPDATE</button>
-    <button (click)='onDelete(user)'>DELETE</button>
-  </p>
-  <a routerLink="/user_form">Add new user</a>
+<button routerLink="/user_form" mat-fab color="warn" >+ Add</button>
+<mat-table [dataSource]="dataSource">
+    
+    <!-- <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef><b> Number</b> </mat-header-cell>
+        <mat-cell  *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef><b> Name </b></mat-header-cell>
+          <mat-cell  *matCellDef="let row" (click)="gotopost(row)"> {{row.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef> <b> Username</b> </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef> <b>Email</b> </mat-header-cell>
+              <mat-cell  *matCellDef="let row"> {{row.email}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="phone">
+                <mat-header-cell *matHeaderCellDef> <b>Phone</b> </mat-header-cell>
+                <mat-cell  *matCellDef="let row"> {{row.phone}} </mat-cell>
+              </ng-container>
+            
+                <ng-container matColumnDef="website">
+                    <mat-header-cell *matHeaderCellDef> <b>website</b> </mat-header-cell>
+                    <mat-cell  *matCellDef="let row"> {{row.website}} </mat-cell>
+                  </ng-container>
+            <ng-container matColumnDef="button">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row"><button mat-button color="primary" (click)='onUpdate(row)' routerLink="/user_form">UPDATE</button></mat-cell>
+                
+                <!-- <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
+                <mat-cell  *matCellDef="let row"> {{row.email}} </mat-cell> -->
+              </ng-container>
+              <ng-container matColumnDef="deletebutton">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let row"><button mat-button color="warn" (click)='onDelete(row,dataSource)'>DELETE</button></mat-cell>
+                  <!-- <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
+                  <mat-cell  *matCellDef="let row"> {{row.email}} </mat-cell> -->
+                </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+

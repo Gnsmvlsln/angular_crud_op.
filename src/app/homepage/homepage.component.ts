@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service'
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +16,11 @@ export class HomepageComponent implements OnInit {
     uuname: "",
     id: null
   }
-  constructor(private userservice: UserService) {
+  // dataSource:any[];
+  dataSource = new MatTableDataSource<Element>(this.users);
+  constructor(private userservice: UserService,
+              private router: Router,
+              private changeDetectorRefs: ChangeDetectorRef) {
     // console.log('stuck',this.userservice.userData)
     // const userData={name:this.userservice.userinput.name,username:this.userservice.userinput.uname,id:this.userservice.userinput.id}
     // this.userservice.addUser(userData)
@@ -42,16 +48,29 @@ export class HomepageComponent implements OnInit {
     this.users = response;
     this.userservice.store(this.users);
     this.users = this.userservice.arrayAtservice;
+    this.dataSource = new MatTableDataSource<Element>(this.users);
+    // this.dataSource=this.users;
   }
   onUpdate(userData) {
     this.userservice.updateUserData(userData)
   }
 
-  onDelete(data) {
-    this.userservice.delete(data.id)
+  onDelete(data,dataSource) {
+    console.log('dlt',data)
+    const something=this.userservice.delete(data.id)
       .subscribe(response => {
         const index = this.users.indexOf(data);
-        this.users.splice(index, 1)
+        this.dataSource.data.splice(index, 1)
+        console.log(this.users)   
+        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data);    
+        console.log('this.data',this.dataSource)
       })
   }
+
+  gotopost(row){
+    this.router.navigateByUrl(`users?data=${JSON.stringify(row)}`)
+  }
+   displayedColumns: string[] = [ 'name', 'username', 'email','phone','website','button','deletebutton'];
+   
+   
 }

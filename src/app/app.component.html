@@ -1,4 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <!-- <app-userform></app-userform> -->
+<ul >
+<li class="left" ><button routerLink="/user_form" mat-fab color="warn" >+ Add</button>
+</li>
+<li class="left" role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
+<li class="left" role="presentation" routerLinkActive="active"><a routerLink="/dealers">Dealers</a></li>
+<li class="left"role="presentation" routerLinkActive="active"><a [routerLink]="['/feedback']">Feedback</a></li>
+</ul>
 <router-outlet></router-outlet>

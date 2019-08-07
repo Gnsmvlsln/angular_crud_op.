@@ -1,0 +1,19 @@
+<!-- <div >
+  <p><b>{{comment.email}}</b> :</p>
+  <p>{{comment.body}}</p>
+</div> -->
+<h2>COMMENTS</h2> ( Lazy loaded )
+<div *ngFor="let comment of singleData">
+<mat-card [routerLink]="['/feedback',comment.id]"
+          [queryParams]="{allowedit: comment.id}" >
+    <!-- (click)="onLoad()" -->
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+    <mat-card-subtitle>{{comment.email}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      {{comment.body}}
+  </mat-card-content>
+</mat-card>
+</div>
+<router-outlet></router-outlet>

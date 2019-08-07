@@ -16,6 +16,10 @@ import {MatInputModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldControl} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// import { SingleFeedbackComponent } from './single-feedback/single-feedback.component';
+// import { AdminComponent } from './admin/admin.component';
+// import { DealerModule } from './dealer/dealer.module';
 // import {DemoMaterialModule} from './material.module';
 
 @NgModule({
@@ -23,7 +27,10 @@ import {MatCardModule} from '@angular/material/card';
     AppComponent,
     UsersComponent,
     UserformComponent,
-    HomepageComponent
+    HomepageComponent,
+    PageNotFoundComponent,
+    // SingleFeedbackComponent,
+    // AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,8 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule,
     // DemoMaterialModule,
     // FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // DealerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
